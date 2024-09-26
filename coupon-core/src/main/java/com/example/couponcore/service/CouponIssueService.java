@@ -24,6 +24,7 @@ public class CouponIssueService {
     private final CouponIssueRepository couponIssueRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    //flab:요기 다시한번 꼭 봐주세요!! 중요
     @Transactional
     public void issue(long couponId, long userId) {
         Coupon coupon = findCouponWithLock(couponId);
@@ -31,6 +32,15 @@ public class CouponIssueService {
         saveCouponIssue(couponId, userId);
         publishCouponEvent(coupon);
     }
+    /*
+    1. 트랜잭션 단위로 잘 묶인 것 같다.
+    2. coupon.issue가 가독성이 좋다.
+    3. 예외가 잘 관리되고 있다.
+     */
+
+    // 오늘 함께 할 것
+    // 1. 강의 프로젝트로 멘토링을 진행함에 따른 장단점 <- 현재 진행중
+    // 2. 전체적인 코드리뷰
 
     @Transactional(readOnly = true)
     public Coupon findCoupon(long couponId) {
@@ -65,7 +75,8 @@ public class CouponIssueService {
 
     private void publishCouponEvent(Coupon coupon) {
         if (coupon.isIssueComplete()) {
-            applicationEventPublisher.publishEvent(new CouponIssueCompleteEvent(coupon.getId()));
+            // 쿠폰이슈매니저.issueComplete(new CouponIssueCompleteEvent(coupon.getId())) <-1 차이는?
+             applicationEventPublisher.publishEvent(new CouponIssueCompleteEvent(coupon.getId())); // <-2 차이는?
         }
     }
 }

@@ -19,7 +19,7 @@ import static com.example.couponcore.util.CouponRedisUtils.getIssueRequestQueueK
 @RequiredArgsConstructor
 @Repository
 public class RedisRepository {
-
+    //flab:요기 redisson 구경해보기
     private final RedisTemplate<String, String> redisTemplate;
     private final RedisScript<String> issueScript = issueRequestScript();
     private final String issueRequestQueueKey = getIssueRequestQueueKey();

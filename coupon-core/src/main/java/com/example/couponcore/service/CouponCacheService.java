@@ -14,6 +14,7 @@ public class CouponCacheService {
 
     private final CouponIssueService couponIssueService;
 
+    //flab:요기 캐시 적용하는 annotation
     @Cacheable(cacheNames = "coupon")
     public CouponRedisEntity getCouponCache(long couponId) {
         Coupon coupon = couponIssueService.findCoupon(couponId);
@@ -25,6 +26,7 @@ public class CouponCacheService {
         return getCouponCache(couponId);
     }
 
+    //flab:요기 cache는 어떻게 evict -> ttl
     @Cacheable(cacheNames = "coupon", cacheManager = "localCacheManager")
     public CouponRedisEntity getCouponLocalCache(long couponId) {
         return proxy().getCouponCache(couponId);

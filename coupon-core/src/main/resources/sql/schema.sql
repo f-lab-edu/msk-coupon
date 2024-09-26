@@ -1,4 +1,4 @@
-CREATE TABLE `coupon`.`coupons`
+CREATE TABLE `coupon`.`coupons` #flab:요기 flyway
 (
     `id`                   BIGINT(20) NOT NULL AUTO_INCREMENT,
     `title`                VARCHAR(255) NOT NULL COMMENT '쿠폰명',

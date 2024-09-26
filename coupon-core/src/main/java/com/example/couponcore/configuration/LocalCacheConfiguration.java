@@ -15,7 +15,7 @@ public class LocalCacheConfiguration {
     public CacheManager localCacheManager() {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCaffeine(Caffeine.newBuilder()
-                .expireAfterWrite(Duration.ofSeconds(10))
+                .expireAfterWrite(Duration.ofSeconds(10)) // ttl
                 .maximumSize(1000)
         );
         return caffeineCacheManager;

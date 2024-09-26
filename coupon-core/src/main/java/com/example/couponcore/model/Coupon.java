@@ -67,6 +67,7 @@ public class Coupon extends BaseTimeEntity {
 
     public void issue() {
         if (!availableIssueQuantity()) {
+            //flab:요기 예외를 관리하는 패턴, 모니터링관점에서 무시하고싶은 예외랑 무시하고싶지 않은 예외 구별이 안됨
             throw new CouponIssueException(INVALID_COUPON_ISSUE_QUANTITY, "발급 가능한 수량을 초과합니다. total : %s, issued: %s".formatted(totalQuantity, issuedQuantity));
         }
         if (!availableIssueDate()) {

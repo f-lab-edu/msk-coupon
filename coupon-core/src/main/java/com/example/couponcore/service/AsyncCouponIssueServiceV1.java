@@ -27,6 +27,7 @@ public class AsyncCouponIssueServiceV1 {
     public void issue(long couponId, long userId) {
         CouponRedisEntity coupon = couponCacheService.getCouponCache(couponId);
         coupon.checkIssuableCoupon();
+        //flab:요기 비동기로 성능을 향상시키기 위해 디비락이 아닌 분산락을 사용
         distributeLockExecutor.execute("lock_%s".formatted(couponId), 3000, 3000, () -> {
             couponIssueRedisService.checkCouponIssueQuantity(coupon, userId);
             issueRequest(couponId, userId);

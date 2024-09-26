@@ -49,7 +49,7 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    hikari:
+    hikari: #flab:요기 아래 설정들 확인!!
       jdbc-url: jdbc:mysql://PROD_URL/coupon?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       maximum-pool-size: 10

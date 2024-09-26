@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 
 import static com.example.couponcore.util.CouponRedisUtils.getIssueRequestKey;
 
+//flab:요기 서비스의 테스트들 모두 유닛테스트로 전환 되어야해요
 class CouponIssueRedisServiceTest extends TestConfig {
 
     @Autowired

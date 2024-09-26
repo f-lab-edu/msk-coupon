@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface CouponJpaRepository extends JpaRepository<Coupon, Long> {
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM Coupon c WHERE c.id = :id")
+    @Lock(LockModeType.PESSIMISTIC_WRITE) //flab: PESSIMISTIC_READ 을 사용하면 select ~ lock in share mode 쿼리가 발생함
+    @Query("SELECT c FROM Coupon c WHERE c.id = :id") //flab: select ~ for update 쿼리가 발생함
     Optional<Coupon> findCouponWithLock(long id);
+
 }

@@ -25,6 +25,7 @@ public class CouponIssueListener {
     private final String issueRequestQueueKey = getIssueRequestQueueKey();
     private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
+    //flab:요기 1000 무조건 1초마다 실행하는건 괜찮을까?
     @Scheduled(fixedDelay = 1000)
     public void issue() throws JsonProcessingException {
         log.info("listen...");
@@ -41,6 +42,7 @@ public class CouponIssueListener {
         return redisRepository.lSize(issueRequestQueueKey) > 0;
     }
 
+    //flab:요기 외부에 뭔가져올때는 개수 제한 필수
     private CouponIssueRequest getIssueTarget() throws JsonProcessingException {
         return objectMapper.readValue(redisRepository.lIndex(issueRequestQueueKey, 0), CouponIssueRequest.class);
     }
