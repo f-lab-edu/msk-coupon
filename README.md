@@ -77,3 +77,12 @@ max : 14000 ms
 
 #### Metric
 <img width="1656" alt="image" src="https://github.com/prod-j/coupon-version-management/assets/148772205/9e3936c5-698d-40cb-b4f4-60e98993687e">
+
+
+#### How to run
+1) intellij -> edit configuration, profile 'local'
+2) at each dir, docker compose up -d
+3) create db using coupon-core/resources/sql/schema.sql, and then make user - id:abcd, pw:1234
+4) INSERT INTO coupon_issues
+VALUES (1, '네고왕', 'FIRST_COME_FIRST_SERVED', 500, 0, 100000, 110000, '2024-09-26 00:40:02.000000', '2024-09-30 01:40:20.000000', '2024-09-26 01:40:37.000000', '2024-09-26 01:48:47.356114');
+5) run all services and do test
